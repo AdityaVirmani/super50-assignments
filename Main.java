@@ -11,79 +11,103 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter Initial string");
         String initialString = sc.nextLine();
-        MyString obj = new MyString(initialString);
-        System.out.println(
-                "Enter 1. for Append\n2. for CountWords\n3. for Replace\n4. for isPalindrome\n5. for Splice\n6. for Split\n7. for MaxRepeatingCharacter\n8. for Sort\n9. for Shift\n10. for Reverse");
-        int choice = sc.nextInt();
-        sc.nextLine();
-        
-        switch (choice) {
-            case 1:
+        MyString s = new MyString(initialString);
+        int choice;
+        do {
+            System.out.println(
+                    "\nEnter your choice:\n" +
+                            "1. Append\n" +
+                            "2. CountWords\n" +
+                            "3. Replace\n" +
+                            "4. isPalindrome\n" +
+                            "5. Splice\n" +
+                            "6. Split\n" +
+                            "7. MaxRepeatingCharacter\n" +
+                            "8. Sort\n" +
+                            "9. Shift\n" +
+                            "10. Reverse\n" +
+                            "0. Exit");
 
-                System.out.println("Enter string to be appended");
-                String append= sc.nextLine();
-                obj.append(append);
-                System.out.println("Result is:" + obj.str);
-                break;
-            case 2:
-                int word = obj.countWords(initialString);
-                System.out.println("total Words:" + word);
-                break;
-            case 3:
-                System.out.println("Enter character to be replaced");
-                char ch1 = sc.next().charAt(0);
-                System.out.println("Replace with");
-                char ch2 = sc.next().charAt(0);
-                obj.replace(initialString, ch1, ch2);
-                System.out.println("Result is:" + obj.str);
-                break;
-            case 4:
-                boolean result = obj.isPalindrome(initialString);
-                if (result == true)
-                    System.out.println("String is palindrome");
-                else
-                    System.out.println("String is not palindrome");
-                break;
-            case 5:
-                System.out.println("Enter starting index");
-                int start = sc.nextInt();
-                System.out.println("Enter Length");
-                int length = sc.nextInt();
-                obj.splice(initialString, start, length);
-                System.out.println("Result is:" + obj.str);
-                break;
-            case 6:
-                System.out.println("Enter the pattern to split");
-                char ch = sc.nextLine().charAt(0);
-                String[] result1 = obj.split(initialString, ch);
-                System.out.println("Result is:");
-                for (int i = 0; i < result1.length; i++) {
-                    System.out.println(result1[i]);
-                }
-                break;
-            case 7:
-                
-                System.out.println(obj.maxRepeatingCharacter(initialString));
-                break;
-            case 8:
-                obj.sort(initialString);
-                System.out.println("Result is:" + obj.str);
-                break;
-            case 9:
-                System.out.println("Enter number of character that is to be shifted from start to end");
-                int n = sc.nextInt();
-                obj.shift(initialString, n);
-                System.out.println("Result is:" + obj.str);
-                break;
-            case 10:
-                obj.reverse(initialString);
-                System.out.println("Result is:" + obj.str);
-                break;
-            default:
-                System.out.println("Not a valid choice");
-                break;
+            choice = sc.nextInt();
+            sc.nextLine(); // consume newline
 
-        }
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter string to be appended");
+                    String append = sc.nextLine();
+                    s.append(append);
+                    System.out.println("Result is:" + s.str);
+                    break;
+
+                case 2:
+                    int word = s.countWords();
+                    System.out.println("Total Words: " + word);
+                    break;
+
+                case 3:
+                    System.out.println("Enter character to be replaced");
+                    char prevChar = sc.next().charAt(0);
+                    System.out.println("Replace with");
+                    char newChar = sc.next().charAt(0);
+                    s.replace(prevChar, newChar);
+                    System.out.println("Result is:" + s.str);
+                    break;
+
+                case 4:
+                    boolean result = s.isPalindrome();
+                    System.out.println(result ? "String is palindrome" : "String is not palindrome");
+                    break;
+
+                case 5:
+                    System.out.println("Enter starting index");
+                    int start = sc.nextInt();
+                    System.out.println("Enter Length");
+                    int length = sc.nextInt();
+                    s.splice(start, length);
+                    System.out.println("Result is:" + s.str);
+                    break;
+
+                case 6:
+                    System.out.println("Enter the pattern to split");
+                    char ch = sc.next().charAt(0);
+                    String[] result1 = s.split(ch);
+                    System.out.println("Result is:");
+                    for (String str : result1) {
+                        System.out.println(str);
+                    }
+                    break;
+
+                case 7:
+                    System.out.println(s.maxRepeatingCharacter());
+                    break;
+
+                case 8:
+                    s.sort();
+                    System.out.println("Result is:" + s.str);
+                    break;
+
+                case 9:
+                    System.out.println("Enter number of characters to shift from start to end");
+                    int n = sc.nextInt();
+                    s.shift(n);
+                    System.out.println("Result is:" + s.str);
+                    break;
+
+                case 10:
+                    s.reverse();
+                    System.out.println("Result is:" + s.str);
+                    break;
+
+                case 0:
+                    System.out.println("Exiting program...");
+                    break;
+
+                default:
+                    System.out.println("Not a valid choice");
+                    break;
+            }
+
+        } while (choice != 0);
 
     }
 }
