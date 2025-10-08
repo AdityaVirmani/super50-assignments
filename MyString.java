@@ -36,6 +36,7 @@ public class MyString {
                 words++;
         }
         return words;
+        
     }
 
     public String replace(String str, char ch1, char ch2) {

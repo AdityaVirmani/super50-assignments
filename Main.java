@@ -16,6 +16,7 @@ public class Main {
                 "Enter 1. for Append\n2. for CountWords\n3. for Replace\n4. for isPalindrome\n5. for Splice\n6. for Split\n7. for MaxRepeatingCharacter\n8. for Sort\n9. for Shift\n10. for Reverse");
         int choice = sc.nextInt();
         sc.nextLine();
+        
         switch (choice) {
             case 1:
 
