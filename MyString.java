@@ -1,12 +1,12 @@
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Map;
+
 /**
  * @Filename-MyString.java
  * @Description-This will perform most of the string operations
  * @Author-Aditya Virmani
  */
-
 
 public class MyString {
     String str;
@@ -21,7 +21,8 @@ public class MyString {
         return this.str;
     }
 
-    public int countWords(String str) {
+    public int countWords() {
+        String str = this.str;
         str = str.trim();
         if (this.str.length() == 0) {
             return 0;
@@ -36,10 +37,11 @@ public class MyString {
                 words++;
         }
         return words;
-        
+
     }
 
-    public String replace(String str, char ch1, char ch2) {
+    public String replace(char ch1, char ch2) {
+        String str = this.str;
         String s = "";
 
         for (int i = 0; i < str.length(); i++) {
@@ -52,7 +54,8 @@ public class MyString {
         return this.str;
     }
 
-    public boolean isPalindrome(String str) {
+    public boolean isPalindrome() {
+        String str = this.str;
         int i = 0, j = str.length() - 1;
         while (i < j) {
             if (str.charAt(i) != str.charAt(j)) {
@@ -64,8 +67,8 @@ public class MyString {
         return true;
     }
 
-    public String splice(String str, int start, int length) {
-
+    public String splice(int start, int length) {
+        String str = this.str;
         String s = "";
         int i = 0;
         for (i = 0; i < start; i++) {
@@ -84,7 +87,8 @@ public class MyString {
         return this.str;
     }
 
-    public String[] split(String str, char ch) {
+    public String[] split(char ch) {
+        String str = this.str;
         int cnt = 1;
 
         for (int i = 0; i < str.length(); i++) {
@@ -108,32 +112,30 @@ public class MyString {
         return result;
     }
 
-    public String maxRepeatingCharacter(String str) {
-        HashMap<Character, Integer> mpp = new HashMap<>();
+    public String maxRepeatingCharacter() {
+        String str = this.str;
+        if (str.length() == 0)
+            return "No characters in string";
+
+        int[] frequency = new int[256]; // ASCII character frequency
         for (int i = 0; i < str.length(); i++) {
-            char ch = str.charAt(i);
-            if (mpp.containsKey(ch)) {
-                mpp.put(ch, mpp.get(ch) + 1);
-            } else {
-                mpp.put(ch, 1);
-            }
+            frequency[str.charAt(i)]++;
         }
+
         int maxi = 0;
-        for (Map.Entry<Character, Integer> entry : mpp.entrySet()) {
-            if (maxi < entry.getValue())
-                maxi = entry.getValue();
-        }
         char ch = ' ';
-        for (Map.Entry<Character, Integer> entry : mpp.entrySet()) {
-            if (entry.getValue() == maxi) {
-                ch = entry.getKey();
-                break;
+        for (int i = 0; i < 256; i++) {
+            if (frequency[i] > maxi) {
+                maxi = frequency[i];
+                ch = (char) i;
             }
         }
+
         return ch + " -> " + maxi;
     }
 
-    public String sort(String str) {
+    public String sort() {
+        String str = this.str;
         char[] chars = str.toCharArray();
         int n = chars.length;
         for (int i = 0; i < n - 1; i++) {
@@ -150,8 +152,8 @@ public class MyString {
         return this.str;
     }
 
-    public String shift(String str, int n) {
-
+    public String shift(int n) {
+        String str = this.str;
         String s = "";
         int cnt = 1;
         int i = 0;
@@ -170,7 +172,8 @@ public class MyString {
         return this.str;
     }
 
-    public String reverse(String str) {
+    public String reverse() {
+        String str = this.str;
         char[] chars = str.toCharArray();
         int i = 0, j = str.length() - 1;
         while (i < j) {
@@ -181,7 +184,6 @@ public class MyString {
             j--;
         }
         String reversedString = new String(chars);
-        System.out.println("Reversed string is:" + reversedString);
         this.str = reversedString;
         return this.str;
     }
